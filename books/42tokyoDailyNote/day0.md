@@ -23,3 +23,4 @@ title: "Day0: Linuxの基本コマンドを忘れるの巻"
 # 次に使えるIF::THENリスト
 ::
 - [ ] ->do in a week
+
