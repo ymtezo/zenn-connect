@@ -1,0 +1,9 @@
+title: "42Tokyo日誌"
+summary: "42Tokyoで学んだことのアウトプットとして"
+topics: ["42tokyo", "linux", "c"]
+published: false
+price: 0
+chapters:
+  - day0
+  - day1
+  - day2
