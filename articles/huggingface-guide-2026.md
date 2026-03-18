@@ -741,3 +741,5 @@ print(f"Model: {CFG['model']}")
 - [cl-tohoku/bert-base-japanese-v3](https://huggingface.co/cl-tohoku/bert-base-japanese-v3)
 - [microsoft/deberta-v3-large](https://huggingface.co/microsoft/deberta-v3-large)
 - [intfloat/multilingual-e5-large](https://huggingface.co/intfloat/multilingual-e5-large)
+
+
