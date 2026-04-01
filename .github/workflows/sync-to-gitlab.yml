@@ -1,0 +1,32 @@
+name: Sync to GitLab
+
+on:
+  push:
+    branches: ["*"]
+    tags: ["*"]
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync to GitLab
+        shell: bash
+        env:
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          GITLAB_REPO: ${{ secrets.GITLAB_REPO }}
+        run: |
+          git remote remove gitlab 2>/dev/null || true
+          CLEAN_URL=$(echo "$GITLAB_REPO" | sed 's|https://||')
+          AUTH_URL="https://oauth2:${GITLAB_TOKEN}@${CLEAN_URL}"
+          git branch -r | grep -v '\->' | while read -r remote; do
+            branch="${remote#origin/}"
+            git branch -f "$branch" "$remote" 2>/dev/null || true
+          done
+          git push --all --force "$AUTH_URL"
+          git push --tags --force "$AUTH_URL"
